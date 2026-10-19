@@ -1,0 +1,15 @@
+metric,estimate,interval_or_p_value,notes
+Survey-weighted prevalence,18.63%,95% CI 16.78%–20.49%,Weighted prevalence of project-defined high BP among eligible records
+Age OR (survey-weighted logistic model),1.06169,95% CI 1.05412–1.06932; p=5.37e-10,Per additional year of age
+Male vs female OR (survey-weighted logistic model),1.23577,95% CI 0.93382–1.63535; p≈0.10,Not statistically significant at 5%
+BMI OR (survey-weighted logistic model),1.03756,95% CI 1.02567–1.04958; p=3.03e-05,Per one-unit increase in BMI
+Test-set AUC,0.75,,Unweighted test-set discrimination estimate
+Mean five-fold CV AUC,0.7575,SD 0.0128,Exploratory; folds not explicitly survey-aware
+Test-set accuracy,65.44%,,Unweighted; threshold-dependent
+Test-set sensitivity,78.26%,,Unweighted; threshold-dependent
+Test-set specificity,61.79%,,Unweighted; threshold-dependent
+Test-set PPV,36.89%,,Unweighted; threshold-dependent
+Test-set NPV,90.88%,,Unweighted; threshold-dependent
+Test-set F1 score,0.5014,,Unweighted; threshold-dependent
+Complete cases for model predictors/outcome,5176,,"Age, sex, BMI, and outcome available"
+Valid mean BP outcome records,5247,,609 adult records had unavailable mean BP outcome
