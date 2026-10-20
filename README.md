@@ -1,37 +1,56 @@
 # Factors Associated With Hypertension Among Adults: NHANES 2017–2018
 
-## Project overview
-This portfolio project explores the association of age, sex, and body mass index (BMI) with a project-defined high blood-pressure indicator among adults using the US National Health and Nutrition Examination Survey (NHANES) 2017–2018 public data. It demonstrates data preparation, exploratory analysis, survey-weighted logistic regression, and an exploratory prediction assessment using R.
+## Project Overview
+This project investigates associations between age, sex, and body mass index (BMI) and a project-defined high blood-pressure classification among adults using data from the National Health and Nutrition Examination Survey (NHANES) 2017–2018.
 
-**Important outcome definition:** the project defines `measured_high_bp = 1` when the mean of available first three examination systolic readings is at least 140 mmHg **or** the mean diastolic reading is at least 90 mmHg. This is an educational, project-defined classification from one examination session; it is **not a clinical diagnosis**. The analysis is not medical advice.
+The analysis demonstrates data preparation, exploratory analysis, survey-weighted logistic regression, visualization, and exploratory predictive modelling using R.
 
-## Main findings
-- The survey-weighted estimated prevalence of the project-defined threshold was about **18.63%** (95% CI 16.78%–20.49%).
-- In the survey-weighted logistic regression, age was associated with higher odds of meeting the project-defined threshold (OR 1.0617 per year; 95% CI 1.0541–1.0693).
-- BMI was also associated with higher odds (OR 1.0376 per BMI unit; 95% CI 1.0257–1.0496).
-- The male-versus-female association was not statistically significant at the 5% level in the survey-weighted model (OR 1.2358; 95% CI 0.9338–1.6354; p approximately 0.10).
-- Exploratory prediction performance was AUC 0.75 on the held-out test set. Classification metrics are unweighted and threshold-dependent, and should not be interpreted as a clinical screening tool.
+**Important:** The outcome is a project-defined classification based on blood pressure readings from one examination session. It is not a clinical diagnosis of persistent hypertension.
 
-## Repository contents
-- `figures/` — project visualizations. The calibration figure is exploratory and should not be treated as a validated calibration assessment.
-- `reports/` — academic report, portfolio brief, and visualization appendix in PDF; Word versions are included where available.
-- `results/key_results.csv` — key estimates and performance metrics.
-- `scripts/analysis_template.R` — clearly labelled workflow template, not a complete reproduction of the original analysis.
+## Research Objectives
+- Describe blood-pressure and BMI patterns among adults.
+- Examine unadjusted differences by age group and sex.
+- Estimate adjusted associations using survey-weighted logistic regression.
+- Explore the classification performance of a logistic regression model.
 
-## Data sources
-NHANES 2017–2018 public-use files were linked using `SEQN`: demographic (`DEMO_J`), blood pressure examination (`BPX_J`), blood pressure questionnaire (`BPQ_J`), and body measures (`BMX_J`).
+## Data Sources
+The analysis uses public-use NHANES 2017–2018 datasets:
 
-- [NHANES 2017–2018 overview](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/overview.aspx?BeginYear=2017)
+- [Demographics (DEMO_J)](https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/DEMO_J.htm)
 - [Blood Pressure Examination (BPX_J)](https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BPX_J.htm)
+- [Body Measures (BMX_J)](https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BMX_J.htm)
 - [Blood Pressure Questionnaire (BPQ_J)](https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/BPQ_J.htm)
 
-## Methods summary
-Adults aged 18 and older were selected. Mean blood pressure was calculated from available first three readings. The survey-weighted logistic regression used the examination weight `WTMEC2YR`, strata `SDMVSTRA`, and PSU `SDMVPSU`, with age, sex, and BMI as predictors. Missing predictor/outcome records were excluded from the model, yielding 5,176 complete cases.
+The datasets were linked using the participant identifier `SEQN`.
 
-Prediction performance was assessed using a train/test split and cross-validation. These performance summaries are exploratory: cross-validation was not explicitly survey-design-aware, classification metrics are unweighted, and the chosen threshold should be reviewed to ensure it was selected without using held-out test outcomes. Do not use these estimates for individual medical decisions.
+## Methods
+- Data cleaning and preparation
+- Descriptive statistics and exploratory visualizations
+- Survey-weighted logistic regression using the `survey` package
+- ROC/AUC-based assessment of predictive discrimination
+- Exploratory classification metrics
 
-## Reproducibility note
-This package includes finished reports, figures, and a results table. It does **not** contain the original complete R script or raw NHANES data. The included `scripts/analysis_template.R` is a starting scaffold, not a claim that every result can be reproduced from raw files with one run. Before describing the repository as fully reproducible, add the actual analysis script, document package versions, and verify that the workflow regenerates all outputs.
+The survey-weighted model adjusted for age, sex, and BMI and incorporated NHANES examination weights, strata, and primary sampling units.
 
-## Suggested skills to list
-R · dplyr · data cleaning · exploratory data analysis · survey-weighted regression · logistic regression · data visualization · model evaluation
+## Key Findings
+- **Age:** Adjusted odds ratio (OR) 1.0617 per year (95% CI: 1.0541–1.0693).
+- **BMI:** Adjusted OR 1.0376 per kg/m² (95% CI: 1.0257–1.0496).
+- **Sex:** The adjusted association for male versus female participants was not statistically significant at the 5% level (OR 1.2358; 95% CI: 0.9338–1.6354).
+- **Prediction:** Held-out test-set AUC was 0.75. Reported classification metrics were unweighted sample estimates.
+
+These results describe associations and do not establish causation. The project-defined outcome should not be used as a clinical diagnostic tool.
+
+## Repository Structure
+- `scripts/analysis.R` — R analysis script
+- `figures/` — project visualizations
+- `reports/` — academic report and portfolio brief
+- `results/` — selected statistical results
+
+## Tools
+R, RStudio, `haven`, `dplyr`, `ggplot2`, `survey`, and `pROC`.
+
+## Limitations
+The outcome is based on one examination session. Some observations have missing data. Predictive metrics are unweighted, and the threshold-selection and validation procedures require further methodological documentation. The model has not been externally validated.
+
+## Disclaimer
+This project is for educational and analytical demonstration. It is not medical advice or a clinical decision-support tool.
