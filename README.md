@@ -54,3 +54,24 @@ The outcome is based on one examination session. Some observations have missing 
 
 ## Disclaimer
 This project is for educational and analytical demonstration. It is not medical advice or a clinical decision-support tool.
+## Research Report
+
+The full biostatistics research report is available in PDF and editable Word formats.
+
+- **[Read the Full Report (PDF)](reports/Final_NHANES_Biostatistics_Report.pdf)**
+- **[Download the Editable Report (Word)](reports/Final_NHANES_Biostatistics_Report.docx)**
+
+### Key Findings
+
+- Age was positively associated with the project-defined high blood-pressure classification.
+- BMI was also positively associated with the classification after adjustment for age and sex.
+- The adjusted association between sex and the classification was not statistically significant at the 5% level.
+- The prediction model achieved a held-out test-set AUC of 0.75.
+
+### Tools and Methods
+
+R programming, NHANES data, data cleaning, exploratory data analysis, survey-weighted logistic regression, statistical modelling, and data visualization.
+
+### Important Note
+
+The outcome represents an analytical classification based on blood-pressure measurements from one examination session; it is not a clinical diagnosis. Predictive performance metrics are unweighted and should not be interpreted as nationally representative estimates.
